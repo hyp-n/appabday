@@ -13,7 +13,7 @@ except ImportError:
     sys.exit(1)
 
 
-CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
+CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json")
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "qr-codes")
 
 
@@ -83,7 +83,7 @@ def main():
         sys.exit(1)
 
     generated = generate_qr_codes(config)
-    print(f"\n✓ Generated {len(generated)} QR code(s) in '{OUTPUT_DIR}/'")
+    print(f"\nGenerated {len(generated)} QR code(s) in '{OUTPUT_DIR}/'")
 
 
 if __name__ == "__main__":
