@@ -1,0 +1,404 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.birthday-banner {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.birthday-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.birthday-banner p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.qr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.qr-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.qr-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.qr-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.qr-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.qr-card:hover .qr-image img {
+    transform: scale(1.1);
+}
+
+.qr-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.qr-card:hover .qr-overlay {
+    opacity: 1;
+}
+
+.qr-overlay i {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.qr-overlay span {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.qr-content {
+    padding: 20px;
+}
+
+.qr-content h3 {
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.location-desc {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.qr-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.qr-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.info-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.instructions-section {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.instructions-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.instructions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.instruction-step {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    transition: transform 0.3s ease;
+}
+
+.instruction-step:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+.step-content h4 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.step-content p {
+    color: #666;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+footer i {
+    color: #ff6b6b;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .qr-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .birthday-banner h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Ink Theme Variables */
+:root {
+    --ink-bg: #0a0a0a;
+    --ink-fg: #e0e0e0;
+    --ink-muted: #666666;
+    --ink-accent: #ff0080;
+    --ink-card: #141414;
+    --ink-border: #2a2a2a;
+}
+
+/* Ink Theme Base */
+.ink-theme {
+    background: var(--ink-bg);
+    color: var(--ink-fg);
+    font-family: 'Poppins', sans-serif;
+}
+
+.ink-theme body {
+    background: var(--ink-bg);
+    color: var(--ink-fg);
+}
+
+/* Ink Theme Cards */
+.ink-theme .card {
+    background: var(--ink-card);
+    border: 1px solid var(--ink-border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+/* Ink Theme Buttons */
+.ink-theme .btn {
+    display: inline-block;
+    background: var(--ink-accent);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ink-theme .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+}
+
+/* Ink Theme Links */
+.ink-theme a {
+    color: var(--ink-accent);
+    text-decoration: underline;
+}
+
+/* Room Progress Line - Duolingo Style */
+.ink-theme .room-progress {
+    position: relative;
+    padding: 20px 0;
+}
+
+.ink-theme .room-progress::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ink-accent), #ff6b6b);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+.ink-theme .room {
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    text-align: center;
+    z-index: 1;
+    margin: 0 15px;
+}
+
+.ink-theme .room-node {
+    width: 40px;
+    height: 40px;
+    background: var(--ink-card);
+    border: 2px solid var(--ink-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.ink-theme .room.node-active .room-node {
+    background: var(--ink-accent);
+    border-color: var(--ink-accent);
+    transform: scale(1.2);
+}
+
+.ink-theme .room-node i {
+    color: var(--ink-bg);
+    font-size: 1.2rem;
+}
+
+.ink-theme .room-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    user-select: none;
+}
+
+.ink-theme .room-label.active {
+    color: var(--ink-accent);
+}
+
+/* Ink Theme Footer */
+.ink-theme footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink-border);
+    color: var(--ink-muted);
+}

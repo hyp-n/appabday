@@ -1,0 +1,10 @@
+- Living Room
+- Kitchen
+- Dining Hall
+- Grandma's Bedroom (1f)
+- Private Terrace(1f)
+- Kids Room(1f)
+- Office Room(1f)
+-Master Bedroom(1f)
+
+1f == First Floor

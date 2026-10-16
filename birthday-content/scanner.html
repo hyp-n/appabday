@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner - Dad's Birthday</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .scanner-container {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .scanner-box {
+            background: var(--ink-card);
+            border: 1px solid var(--ink-border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+        }
+        #qr-reader {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--ink-accent);
+        }
+        .scan-btn {
+            background: var(--ink-accent);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .scan-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+        }
+        .scan-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 0, 128, 0.1);
+            border: 1px solid var(--ink-accent);
+            border-radius: 12px;
+            color: var(--ink-accent);
+            font-weight: 600;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-btn {
+            background: var(--ink-card);
+            color: var(--ink-fg);
+            border: 1px solid var(--ink-border);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .back-btn:hover {
+            border-color: var(--ink-accent);
+        }
+    </style>
+</head>
+<body class="ink-theme">
+    <div class="container">
+        <div class="birthday-hero">
+            <h1 class="main-title">📷 QR Scanner</h1>
+            <p class="subtitle">Scan any birthday QR code to reveal your surprise</p>
+        </div>
+
+        <div class="scanner-container">
+            <div class="scanner-box">
+                <h3 style="color: var(--ink-fg); margin-bottom: 20px;">Hold your QR code in view</h3>
+                <div id="qr-reader"></div>
+                <div id="result" class="scan-result">No code scanned yet</div>
+                <button class="scan-btn" onclick="startScan()">Start Camera</button>
+                <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script>
+        let html5QrcodeScanner = null;
+        let isScanning = false;
+
+        async function startScan() {
+            const resultDiv = document.getElementById('result');
+            const scanBtn = document.querySelector('.scan-btn');
+
+            if (isScanning) {
+                try {
+                    await html5QrcodeScanner.stop();
+                    isScanning = false;
+                    scanBtn.textContent = 'Start Camera';
+                    resultDiv.textContent = 'Scanner stopped';
+                    resultDiv.style.color = 'var(--ink-muted)';
+                    return;
+                } catch (err) {
+                    console.error('Failed to stop scanner', err);
+                }
+            }
+
+            try {
+                html5QrcodeScanner = new Html5Qrcode("qr-reader");
+                await html5QrcodeScanner.start(
+                    { facingMode: "environment" },
+                    {
+                        fps: 10,
+                        qrbox: 250
+                    },
+                    (decodedText, decodedResult) => {
+                        resultDiv.textContent = decodedText;
+                        resultDiv.style.color = 'var(--ink-accent)';
+                        document.body.style.background = 'linear-gradient(135deg, #ff0080, #ff6b6b, #ff9ff3)';
+                        setTimeout(() => {
+                            document.body.style.background = 'var(--ink-bg)';
+                        }, 1000);
+
+                        // Navigate if it's a room URL
+                        if (decodedText.includes('index.html') || decodedText.includes('living-room') || decodedText.includes('kitchen')) {
+                            setTimeout(() => {
+                                window.location.href = decodedText.includes('http') ? decodedText : 'index.html';
+                            }, 1500);
+                        }
+                    },
+                    (errorMessage) => {
+                        // ignore scan errors
+                    }
+                );
+                isScanning = true;
+                scanBtn.textContent = 'Stop Camera';
+                resultDiv.textContent = 'Scanning...';
+                resultDiv.style.color = 'var(--ink-muted)';
+            } catch (err) {
+                alert('Error starting camera: ' + err.message);
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>

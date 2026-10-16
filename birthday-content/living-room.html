@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Room Birthday Surprise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .video-container {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+            text-align: center;
+        }
+        .video-placeholder {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 60px;
+            margin: 30px 0;
+            border: 3px dashed white;
+        }
+        .message-box {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .back-btn {
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: white; margin-bottom: 30px;">
+            <i class="fas fa-couch"></i> Living Room Surprise!
+        </h1>
+        
+        <div class="video-container">
+            <h2>🎥 Dad's Birthday Video Message</h2>
+            <div class="video-placeholder">
+                <i class="fas fa-play-circle fa-5x" style="margin-bottom: 20px;"></i>
+                <h3>Video Player</h3>
+                <p>Replace this with actual video content</p>
+                <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+            </div>
+        </div>
+        
+        <div class="message-box">
+            <h3>Special Birthday Wishes from the Family</h3>
+            <p>Dear Dad, on your birthday, we want you to know how much you're loved and appreciated. Your kindness, your wisdom, your laughter - everything about you makes this family what it is.</p>
+            <p>From the funny moments in the kitchen to the quiet talks in the living room, every memory with you is precious.</p>
+            <p>Happy Birthday, Dad! May this year bring you endless joy, good health, and all the success you deserve.</p>
+            <p style="font-weight: bold; text-align: right;">Love, Your Family ❤️</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add celebration effect
+        document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        
+        // Add confetti effect
+        function createCelebration() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = ['🎉', '🎊', '🎈', '🎁'][Math.floor(Math.random() * 4)];
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-50px';
+                    confetti.style.fontSize = (Math.random() * 30 + 15) + 'px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+        
+        // Add fall animation
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fall { to { transform: translateY(${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg); opacity: 0; } }`;
+        document.head.appendChild(style);
+        
+        createCelebration();
+    </script>
+</body>
+</html>
