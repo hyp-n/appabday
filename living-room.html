@@ -16,13 +16,6 @@
             color: white;
             text-align: center;
         }
-        .video-placeholder {
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 60px;
-            margin: 30px 0;
-            border: 3px dashed white;
-        }
         .message-box {
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             padding: 30px;
@@ -49,7 +42,7 @@
         }
     </style>
 </head>
-<body>
+<body class="ink-theme">
     <div class="container">
         <h1 style="text-align: center; color: white; margin-bottom: 30px;">
             <i class="fas fa-couch"></i> Living Room Surprise!
@@ -57,12 +50,11 @@
         
         <div class="video-container">
             <h2>🎥 Dad's Birthday Video Message</h2>
-            <div class="video-placeholder">
-                <i class="fas fa-play-circle fa-5x" style="margin-bottom: 20px;"></i>
-                <h3>Video Player</h3>
-                <p>Replace this with actual video content</p>
-                <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
-            </div>
+            <video controls width="100%" max-width="640" style="border-radius: 12px; margin-top: 20px;">
+                <source src="assets/videos/20261016_122758.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
         </div>
         
         <div class="message-box">
@@ -75,20 +67,22 @@
     </div>
     
     <script>
-        // Add celebration effect
-        document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        document.body.style.background = '#0a0a0a';
         
-        // Add confetti effect
         function createCelebration() {
+            const emojis = ['🎉', '🎊', '🎈', '🎁', '❤️'];
             for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
-                    confetti.innerHTML = ['🎉', '🎊', '🎈', '🎁'][Math.floor(Math.random() * 4)];
+                    confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
                     confetti.style.position = 'fixed';
                     confetti.style.left = Math.random() * window.innerWidth + 'px';
                     confetti.style.top = '-50px';
                     confetti.style.fontSize = (Math.random() * 30 + 15) + 'px';
+                    confetti.style.color = '#ff0080';
                     confetti.style.zIndex = '9999';
+                    confetti.style.setProperty('--fall-height', (window.innerHeight + 50) + 'px');
+                    confetti.style.setProperty('--fall-rotate', Math.random() * 360 + 'deg');
                     confetti.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear';
                     document.body.appendChild(confetti);
                     
@@ -99,9 +93,8 @@
             }
         }
         
-        // Add fall animation
         const style = document.createElement('style');
-        style.textContent = `@keyframes fall { to { transform: translateY(${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg); opacity: 0; } }`;
+        style.textContent = `@keyframes fall { to { transform: translateY(var(--fall-height)) rotate(var(--fall-rotate)); opacity: 0; } }`;
         document.head.appendChild(style);
         
         createCelebration();

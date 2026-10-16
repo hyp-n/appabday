@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Recipe - Dad's Birthday</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .recipe-container {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            color: white;
+            text-align: center;
+            border: 1px solid var(--ink-border);
+        }
+        .message-box {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .back-btn {
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="ink-theme">
+    <div class="container">
+        <h1 style="text-align: center; color: white; margin-bottom: 30px;">
+            <i class="fas fa-utensils"></i> Dad's Kitchen Secrets
+        </h1>
+        
+        <div class="recipe-container">
+            <h2>🍳 Dad's Favorite Recipe</h2>
+            <p style="font-size: 1.1rem; margin: 20px 0;">
+                A special family recipe passed down through generations. Cook this together for Dad's birthday!
+            </p>
+            <div style="margin: 25px 0;">
+                <strong>Ingredients:</strong><br>
+                • Love (1 cup)<br>
+                • Patience (2 tbsp)<br>
+                • Dad's secret spice blend<br>
+                • Family memories (a handful)
+            </div>
+            <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+        </div>
+        
+        <div class="message-box">
+            <h3>Special Birthday Wishes from the Family</h3>
+            <p>Dear Dad, thank you for all the meals you've cooked for us, the pancakes on weekend mornings, and the barbecue in the summer. Your cooking brings us together.</p>
+            <p>Happy Birthday, Dad! May your day be as wonderful as your cooking.</p>
+            <p style="font-weight: bold; text-align: right;">Love, Your Family ❤️</p>
+        </div>
+    </div>
+    
+    <script>
+        document.body.style.background = '#0a0a0a';
+        
+        function createCelebration() {
+            const emojis = ['🍳', '🍴', '🍰', '🎂', '❤️'];
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-50px';
+                    confetti.style.fontSize = (Math.random() * 30 + 15) + 'px';
+                    confetti.style.color = '#ff0080';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.setProperty('--fall-height', (window.innerHeight + 50) + 'px');
+                    confetti.style.setProperty('--fall-rotate', Math.random() * 360 + 'deg');
+                    confetti.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 100);
+            }
+        }
+        
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fall { to { transform: translateY(var(--fall-height)) rotate(var(--fall-rotate)); opacity: 0; } }`;
+        document.head.appendChild(style);
+        
+        createCelebration();
+    </script>
+</body>
+</html>
